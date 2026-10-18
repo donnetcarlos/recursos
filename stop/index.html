@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Cómo calculo mi stop · Carlos Donnet</title>
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<main>
+  <header class="hero">
+    <p class="marca">CARLOS DONNET · FONDEO DE FUTUROS</p>
+    <h1>Cómo calculo mi stop en una cuenta de <em>fondeo</em></h1>
+    <p class="bajada">En futuros no uso el stop clásico. Mi stop es el <strong>drawdown de la cuenta</strong>, con el riesgo definido antes de entrar. Acá te muestro por qué y cómo hago la cuenta.</p>
+  </header>
+
+  <section class="tarjeta">
+    <h2>1 · El problema del stop clásico</h2>
+    <p>Stop debajo del último bajo, buscando un 1 a 2. En una cuenta normal funciona. En una de fondeo de 50K, con 2.000 de drawdown, si arriesgás 500 por trade:</p>
+    <p class="formula">2.000 ÷ 500 = 4 pérdidas seguidas y la cuenta se quema</p>
+    <p>Y cuatro pérdidas seguidas pasan más de lo que parece. Con un 1 a 2 que acierta el 40 %, en 20 trades hay <strong class="acento-t">7 chances de 10</strong> de encadenar cuatro. Encima el drawdown te sigue: cada día que cerrás en ganancia, el piso sube.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>2 · Mi forma: el stop es el drawdown</h2>
+    <ol class="pasos">
+      <li><strong>Defino el riesgo máximo antes de entrar:</strong> es el drawdown de la cuenta. En una de 50K, 2.000 USD.</li>
+      <li><strong>Entro chico:</strong> 2 micros.</li>
+      <li><strong>Si el precio va en contra, compenso</strong> en niveles calculados de antemano. Cada compensación baja el precio promedio.</li>
+      <li><strong>Un retroceso chico alcanza para salir en positivo,</strong> porque ya no necesito que el precio vuelva a mi primera entrada: solo al promedio.</li>
+    </ol>
+    <p>No busco la entrada perfecta: busco el mejor precio promedio.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>3 · Hacé la cuenta con tus números</h2>
+    <div class="campos">
+      <label>Drawdown de la cuenta (USD)<input id="dd" type="number" inputmode="decimal" value="2000"></label>
+      <label>Contrato
+        <select id="contrato">
+          <option value="2">MNQ · Nasdaq micro (2 USD por punto)</option>
+          <option value="5">MES · S&amp;P micro (5 USD por punto)</option>
+          <option value="0.5">MYM · Dow micro (0,5 USD por punto)</option>
+          <option value="10">MGC · Oro micro (10 USD por punto)</option>
+        </select>
+      </label>
+      <label>Contratos en la primera entrada<input id="c0" type="number" inputmode="numeric" value="2" min="1"></label>
+    </div>
+    <p style="margin:18px 0 8px;color:var(--tenue);font-size:14px">Compensaciones (puntos en contra desde la primera entrada y contratos que sumás):</p>
+    <div id="comps"></div>
+    <button type="button" id="agregar" class="boton-sec">+ Agregar compensación</button>
+
+    <div class="resultado">
+      <div><span class="etiqueta">Precio promedio (puntos desde la primera entrada)</span><span id="r-prom" class="cifra acento">—</span></div>
+      <div><span class="etiqueta">Retroceso que necesitás para salir en cero</span><span id="r-ret" class="cifra verde">—</span></div>
+      <div><span class="etiqueta">La cuenta se quema a (puntos en contra)</span><span id="r-quema" class="cifra rojo-t">—</span></div>
+    </div>
+    <table class="tabla" aria-live="polite">
+      <thead><tr><th>Paso</th><th class="n">En contra</th><th class="n">Contratos</th><th class="n">Promedio</th><th class="n">Pérdida flotante</th></tr></thead>
+      <tbody id="tabla"></tbody>
+    </table>
+    <p id="r-mensaje" class="mensaje"></p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>4 · Por qué da un winrate tan alto (y cuál es el costo)</h2>
+    <p>El winrate alto no es magia: sale de la forma del trade. Para ganar alcanza un retroceso chico hasta el promedio; para perder, el precio tiene que irse muy lejos sin retroceder. Lo primero pasa casi siempre; lo segundo, pocas veces. Para tener una referencia, el Nasdaq mueve unos 200 puntos en una sesión promedio.</p>
+    <p class="aviso">El costo: el día que el precio se va sin retroceso, perdés la cuenta entera. Por eso lo uso en cuentas de fondeo, donde lo que pierdo es lo que pagué por la cuenta (en una de 50K, unos 90 USD), y no en una cuenta con mi capital.</p>
+    <p>Mis niveles de compensación los calcula mi sistema con 10 años de datos del Nasdaq. Esta calculadora sirve para entender la mecánica y medir el riesgo de cualquier plan antes de entrar.</p>
+  </section>
+
+  <footer class="pie">
+    <p>La pérdida flotante cuenta: si durante el día tocás el piso de la cuenta, se quema aunque después el precio vuelva. Confirmá las reglas de tu empresa y de tu plan.</p>
+    <p>Contenido educativo, no es asesoramiento financiero. Operar futuros implica riesgo de pérdida. Resultados pasados no garantizan resultados futuros.</p>
+    <p class="firma">@carlosdonnet</p>
+  </footer>
+</main>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var fmtP = function (n) { return (Math.round(n * 10) / 10).toLocaleString("es-AR", { maximumFractionDigits: 1 }); };
+  var fmtU = function (n) { return Math.round(n).toLocaleString("es-AR"); };
+  var num = function (el) { var v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+
+  function filaComp(puntos, contratos) {
+    var f = document.createElement("div");
+    f.className = "fila-comp campos";
+    f.innerHTML = '<label>Puntos en contra<input type="number" inputmode="decimal" class="cp" value="' + puntos + '"></label>' +
+      '<label>Contratos<input type="number" inputmode="numeric" class="cc" value="' + contratos + '" min="1"></label>' +
+      '<button type="button" class="quitar" aria-label="Quitar compensación">✕</button>';
+    f.querySelector(".quitar").addEventListener("click", function () { f.remove(); calcular(); });
+    f.querySelectorAll("input").forEach(function (i) { i.addEventListener("input", calcular); });
+    $("comps").appendChild(f);
+  }
+
+  function calcular() {
+    var dd = num($("dd")), v = parseFloat($("contrato").value), c0 = Math.max(1, Math.round(num($("c0"))));
+    var comps = [];
+    document.querySelectorAll("#comps .fila-comp").forEach(function (f) {
+      var p = Math.abs(num(f.querySelector(".cp"))), c = Math.max(0, Math.round(num(f.querySelector(".cc"))));
+      if (c > 0) comps.push({ p: p, c: c });
+    });
+    comps.sort(function (a, b) { return a.p - b.p; });
+
+    // Posición larga: entrada en 0, "en contra" = puntos por debajo.
+    var contratos = c0, suma = 0, filas = [{ paso: "Entrada", p: 0, c: c0, prom: 0, perd: 0 }], quemaAntes = null;
+    var quemaCon = function (prom, n) { return prom + dd / (v * n); };
+    for (var i = 0; i < comps.length; i++) {
+      var q = quemaCon(suma / contratos, contratos);
+      if (comps[i].p >= q) { quemaAntes = { paso: i + 1, q: q }; break; }
+      suma += comps[i].p * comps[i].c; contratos += comps[i].c;
+      var prom = suma / contratos;
+      filas.push({ paso: "Comp. " + (i + 1), p: comps[i].p, c: contratos, prom: prom, perd: (comps[i].p - prom) * v * contratos });
+    }
+    var ult = filas[filas.length - 1];
+    var quema = quemaCon(ult.prom, ult.c);
+
+    $("r-prom").textContent = "−" + fmtP(ult.prom);
+    $("r-ret").textContent = fmtP(ult.p - ult.prom) + " pts";
+    $("r-quema").textContent = "−" + fmtP(quema);
+    $("tabla").innerHTML = filas.map(function (f) {
+      return "<tr><td>" + f.paso + '</td><td class="n">' + (f.p ? '−' + fmtP(f.p) : '0') + '</td><td class="n">' + f.c + '</td><td class="n">' + (f.prom ? '−' + fmtP(f.prom) : '0') + '</td><td class="n">' + (f.perd > 0 ? "−" + fmtU(f.perd) + " USD" : "0") + "</td></tr>";
+    }).join("");
+
+    var m = $("r-mensaje");
+    if (quemaAntes) m.textContent = "La compensación " + quemaAntes.paso + " no llega a entrar: la cuenta se quema antes, a " + fmtP(quemaAntes.q) + " puntos en contra. Acercala o bajá contratos.";
+    else if (ult.c === c0) m.textContent = "Sin compensaciones necesitás que el precio vuelva hasta tu entrada. Probá agregar una.";
+    else m.textContent = "Desde la última compensación alcanza con un retroceso de " + fmtP(ult.p - ult.prom) + " puntos para salir en cero. Tu margen hasta quemar la cuenta es de " + fmtP(quema - ult.p) + " puntos más.";
+  }
+
+  $("agregar").addEventListener("click", function () {
+    var n = document.querySelectorAll("#comps .fila-comp").length;
+    filaComp(200 + n * 100, 2); calcular();
+  });
+  ["dd", "contrato", "c0"].forEach(function (id) { $(id).addEventListener("input", calcular); });
+  filaComp(200, 2);
+  calcular();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Calculadora de drawdown · Carlos Donnet</title>
+<link rel="stylesheet" href="../estilo.css">
+</head>
+<body>
+<main>
+  <header class="hero">
+    <p class="marca">CARLOS DONNET · FONDEO DE FUTUROS</p>
+    <h1>Devolver una ganancia te puede costar <em>el doble</em></h1>
+    <p class="bajada">En casi todas las cuentas de fondeo de futuros el piso de pérdida <strong>sube con tus ganancias y no vuelve a bajar</strong>. Si devolvés lo que ganaste, volvés al mismo saldo, pero con mucho menos margen. Calculá el tuyo.</p>
+  </header>
+
+  <section class="tarjeta">
+    <h2>Calculadora de margen real</h2>
+    <div class="presets" role="group" aria-label="Tipo de cuenta">
+      <button type="button" data-preset="lucid" class="activo">Lucid 50K Flex</button>
+      <button type="button" data-preset="topstep">Topstep 50K</button>
+      <button type="button" data-preset="otra">Otra cuenta</button>
+    </div>
+    <div class="campos">
+      <label>Saldo inicial (USD)<input id="inicial" type="number" inputmode="decimal" value="50000"></label>
+      <label>Drawdown máximo (USD)<input id="dd" type="number" inputmode="decimal" value="2000"></label>
+      <label>Mejor saldo de cierre que tuviste (USD)<input id="mejor" type="number" inputmode="decimal" value="51500"></label>
+      <label>Saldo de hoy (USD)<input id="hoy" type="number" inputmode="decimal" value="50000"></label>
+      <label id="campo-traba">El piso se congela en (USD)<input id="traba" type="number" inputmode="decimal" value="50100"></label>
+    </div>
+    <div class="resultado">
+      <div><span class="etiqueta">Tu piso hoy</span><span id="r-piso" class="cifra">—</span></div>
+      <div><span class="etiqueta">Tu margen real</span><span id="r-margen" class="cifra acento">—</span></div>
+      <div><span class="etiqueta">Del drawdown original te queda</span><span id="r-pct" class="cifra">—</span></div>
+    </div>
+    <div class="barra" aria-hidden="true"><div id="r-barra"></div></div>
+    <p id="r-mensaje" class="mensaje"></p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>El ejemplo del video, paso a paso</h2>
+    <svg viewBox="0 0 340 215" class="grafico" role="img" aria-label="El saldo sube de 50.000 a 51.500 y vuelve a 50.000; el piso sube de 48.000 a 49.500, queda 500 por debajo del saldo y no vuelve a bajar">
+      <line x1="30" y1="20" x2="30" y2="182" class="eje"/>
+      <line x1="30" y1="182" x2="330" y2="182" class="eje"/>
+      <polyline points="40,95 120,40 200,95 320,95" class="saldo"/>
+      <polyline points="40,168 120,168 120,113 320,113" class="piso"/>
+      <text x="40" y="114" class="t">50.000</text>
+      <text x="104" y="30" class="t">51.500</text>
+      <text x="44" y="160" class="t rojo">piso 48.000</text>
+      <text x="200" y="131" class="t rojo">piso 49.500</text>
+      <line x1="300" y1="95" x2="300" y2="113" class="cota"/>
+      <text x="262" y="108" class="t acento-t">500</text>
+      <text x="40" y="202" class="t tenue">inicio</text>
+      <text x="104" y="202" class="t tenue">ganás</text>
+      <text x="180" y="202" class="t tenue">devolvés</text>
+    </svg>
+    <ol class="pasos">
+      <li>Cuenta de <strong>50.000</strong> con <strong>2.000</strong> de drawdown: el piso arranca en 48.000.</li>
+      <li>Cerrás un día en <strong>51.500</strong>: el piso sube a 51.500 − 2.000 = <strong>49.500</strong>.</li>
+      <li>Devolvés esos 1.500 y volvés a <strong>50.000</strong>: el piso no baja.</li>
+      <li>Mismo saldo que el primer día, pero tu margen ya no es 2.000: es <strong class="acento-t">500</strong>.</li>
+    </ol>
+  </section>
+
+  <section class="tarjeta">
+    <h2>La fórmula</h2>
+    <p class="formula">Piso = mejor saldo de cierre − drawdown</p>
+    <p class="formula">Margen real = saldo de hoy − piso</p>
+    <p>El piso deja de subir cuando llega a su tope (en Lucid 50K Flex, 50.100; en Topstep 50K, 50.000). Desde ahí, cada dólar que ganás es aire de verdad.</p>
+  </section>
+
+  <section class="tarjeta">
+    <h2>Tres reglas que te cuidan la cuenta</h2>
+    <ol class="reglas">
+      <li><strong>Tu riesgo real es tu margen, no el drawdown que dice la cuenta.</strong> Si te quedan 500, tu trade puede perder como máximo 500, aunque la cuenta diga 2.000. Calculá el tamaño sobre ese número.</li>
+      <li><strong>Después de devolver ganancia, recalculá antes de entrar.</strong> El piso no baja: el margen que te queda es menor que el del primer día, y el trade de siempre ya no entra en ese margen.</li>
+      <li><strong>El flotante cuenta.</strong> Si durante el día tocás el piso, aunque después el precio vuelva, la cuenta se quema. No esperes al cierre para mirar tu margen.</li>
+    </ol>
+  </section>
+
+  <footer class="pie">
+    <p>Las reglas cambian según la empresa y el plan, y cada empresa las actualiza. Confirmá las de tu cuenta en su página antes de usar estos números.</p>
+    <p>Contenido educativo, no es asesoramiento financiero. Operar futuros implica riesgo de pérdida. Resultados pasados no garantizan resultados futuros.</p>
+    <p class="firma">@carlosdonnet</p>
+  </footer>
+</main>
+<script>
+(function () {
+  var presets = {
+    lucid: { inicial: 50000, dd: 2000, traba: 50100 },
+    topstep: { inicial: 50000, dd: 2000, traba: 50000 },
+    otra: null
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var fmt = function (n) { return n.toLocaleString("es-AR", { maximumFractionDigits: 0 }); };
+  var num = function (id) { var v = parseFloat($(id).value); return isNaN(v) ? 0 : v; };
+
+  function calcular() {
+    var inicial = num("inicial"), dd = num("dd"), mejor = Math.max(num("mejor"), inicial), hoy = num("hoy");
+    var traba = $("traba").value === "" ? Infinity : num("traba");
+    var piso = Math.min(mejor - dd, traba);
+    piso = Math.max(piso, inicial - dd);
+    var margen = hoy - piso;
+    var pct = dd > 0 ? Math.max(0, Math.min(100, (margen / dd) * 100)) : 0;
+    $("r-piso").textContent = fmt(piso);
+    $("r-margen").textContent = margen <= 0 ? "0" : fmt(margen);
+    $("r-pct").textContent = dd > 0 ? Math.round(pct) + " %" : "—";
+    var barra = $("r-barra");
+    barra.style.width = pct + "%";
+    barra.className = pct < 35 ? "bajo" : pct < 70 ? "medio" : "";
+    var m = $("r-mensaje");
+    if (margen <= 0) m.textContent = "Con estos números la cuenta ya estaría quemada.";
+    else if (pct < 35) m.textContent = "Margen chico: con el tamaño del primer día, un movimiento normal te quema la cuenta. Ajustá el tamaño a este margen.";
+    else if (pct < 70) m.textContent = "Ojo: ya no tenés el drawdown completo. Calculá el riesgo del próximo trade sobre este margen.";
+    else m.textContent = "Tenés casi todo el drawdown disponible.";
+  }
+
+  document.querySelectorAll("[data-preset]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll("[data-preset]").forEach(function (x) { x.classList.remove("activo"); });
+      b.classList.add("activo");
+      var p = presets[b.getAttribute("data-preset")];
+      if (p) { $("inicial").value = p.inicial; $("dd").value = p.dd; $("traba").value = p.traba; }
+      else { $("traba").value = ""; }
+      calcular();
+    });
+  });
+  document.querySelectorAll("input").forEach(function (i) { i.addEventListener("input", calcular); });
+  calcular();
+})();
+</script>
+</body>
+</html>
