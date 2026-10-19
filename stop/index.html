@@ -20,7 +20,7 @@
     <h2>1 · El problema del stop clásico</h2>
     <p>Stop debajo del último bajo, buscando un 1 a 2. En una cuenta normal funciona. En una de fondeo de 50K, con 2.000 de drawdown, si arriesgás 500 por trade:</p>
     <p class="formula">2.000 ÷ 500 = 4 pérdidas seguidas y la cuenta se quema</p>
-    <p>Y cuatro pérdidas seguidas pasan más de lo que parece. Con un 1 a 2 que acierta el 40 %, en 20 trades hay <strong class="acento-t">7 chances de 10</strong> de encadenar cuatro. Encima el drawdown te sigue: cada día que cerrás en ganancia, el piso sube.</p>
+    <p>Y cuatro pérdidas seguidas pasan más de lo que parece. Esa operativa acierta, en promedio, entre el 40 y el 50 % de los trades: con un 40 %, en 20 trades hay <strong class="acento-t">7 chances de 10</strong> de encadenar cuatro. Encima el drawdown te sigue: cada día que cerrás en ganancia, el piso sube.</p>
   </section>
 
   <section class="tarjeta">
@@ -35,40 +35,54 @@
   </section>
 
   <section class="tarjeta">
-    <h2>3 · Hacé la cuenta con tus números</h2>
-    <div class="campos">
-      <label>Drawdown de la cuenta (USD)<input id="dd" type="number" inputmode="decimal" value="2000"></label>
-      <label>Contrato
-        <select id="contrato">
-          <option value="2">MNQ · Nasdaq micro (2 USD por punto)</option>
-          <option value="5">MES · S&amp;P micro (5 USD por punto)</option>
-          <option value="0.5">MYM · Dow micro (0,5 USD por punto)</option>
-          <option value="10">MGC · Oro micro (10 USD por punto)</option>
-        </select>
-      </label>
-      <label>Contratos en la primera entrada<input id="c0" type="number" inputmode="numeric" value="2" min="1"></label>
-    </div>
-    <p style="margin:18px 0 8px;color:var(--tenue);font-size:14px">Compensaciones (puntos en contra desde la primera entrada y contratos que sumás):</p>
-    <div id="comps"></div>
-    <button type="button" id="agregar" class="boton-sec">+ Agregar compensación</button>
+    <h2>3 · Un trade real, paso a paso</h2>
+    <p>Nasdaq micro (MNQ), velas de 1 hora del 1 y 2 de octubre de 2026. Cuenta de 150K (drawdown de 4.500), 2 micros por entrada, objetivo del día: <strong>+1.000 USD</strong>.</p>
 
-    <div class="resultado">
-      <div><span class="etiqueta">Precio promedio (puntos desde la primera entrada)</span><span id="r-prom" class="cifra acento">—</span></div>
-      <div><span class="etiqueta">Retroceso que necesitás para salir en cero</span><span id="r-ret" class="cifra verde">—</span></div>
-      <div><span class="etiqueta">La cuenta se quema a (puntos en contra)</span><span id="r-quema" class="cifra rojo-t">—</span></div>
+    <div class="paso-trade">
+      <p class="paso-num">Paso 1 · 02:00</p>
+      <h3>Entro con 2 micros a 31.025</h3>
+      <svg class="velas" data-hasta="4" data-entradas="0" role="img" aria-label="Gráfico: entrada a 31.025"></svg>
+      <p>Riesgo definido antes de entrar: el drawdown de la cuenta. Sin stop debajo del último bajo.</p>
     </div>
-    <table class="tabla" aria-live="polite">
-      <thead><tr><th>Paso</th><th class="n">En contra</th><th class="n">Contratos</th><th class="n">Promedio</th><th class="n">Pérdida flotante</th></tr></thead>
-      <tbody id="tabla"></tbody>
-    </table>
-    <p id="r-mensaje" class="mensaje"></p>
+
+    <div class="paso-trade">
+      <p class="paso-num">Paso 2 · 03:00</p>
+      <h3>Va en contra: compenso 2 micros a 30.850</h3>
+      <svg class="velas" data-hasta="5" data-entradas="1" role="img" aria-label="Gráfico: primera compensación"></svg>
+      <p>Ahora tengo 4 micros y el <span class="acento-t">precio promedio</span> baja a <strong>30.938</strong>.</p>
+    </div>
+
+    <div class="paso-trade">
+      <p class="paso-num">Paso 3 · 10:00</p>
+      <h3>Sigue en contra: compenso 2 micros más a 30.636</h3>
+      <svg class="velas" data-hasta="13" data-entradas="2" role="img" aria-label="Gráfico: segunda compensación"></svg>
+      <p>6 micros, promedio en <strong>30.837</strong>. El peor momento: el precio llega a 30.529 y la pérdida flotante toca <span class="rojo-t">−3.694 USD</span>, dentro de los 4.500 del drawdown. Para eso está calculado.</p>
+    </div>
+
+    <div class="paso-trade">
+      <p class="paso-num">Paso 4 · 13:00</p>
+      <h3>El precio se da vuelta y paso a positivo</h3>
+      <svg class="velas" data-hasta="15" data-entradas="2" role="img" aria-label="Gráfico: el precio supera el promedio"></svg>
+      <p>No hizo falta que volviera a 31.025, donde entré: alcanzó con que pasara mi promedio de 30.837. En el máximo de esa vela, <span class="verde">+557 USD</span>.</p>
+    </div>
+
+    <div class="paso-trade">
+      <p class="paso-num">Paso 5 · 14:00 a 20:00</p>
+      <h3>Compenso en positivo y el take profit se acerca</h3>
+      <svg class="velas" data-hasta="21" data-entradas="3" data-tp="1" role="img" aria-label="Gráfico: compensación positiva y take profit"></svg>
+      <p>Con el precio arriba del promedio sumo 2 micros más a 30.840. Con 8 micros, el promedio queda en 30.838 y para ganar 1.000 me alcanzan 62 puntos sobre el promedio: el <span class="acento-t">take profit baja de 30.920 a 30.900</span>.</p>
+      <p>Resultado: <strong class="verde">TAKE PROFIT a las 20:00</strong>. Sin la compensación positiva, el de 30.920 recién se tocaba a la 01:00 del día siguiente: <strong>5 horas más</strong> con la posición abierta.</p>
+    </div>
+
+    <p class="comparacion">¿Y sin compensar? Con los 2 micros del principio, para ganar 1.000 el precio tenía que llegar a 31.525. No llegó nunca: 27 horas después seguías en <span class="rojo-t">−77 USD</span>.</p>
+    <p class="fuente">Velas reales de TradingView (CME_MINI:NQ1!, 1 hora, horario de Nueva York). Los niveles de este ejemplo son ilustrativos; los míos los calcula mi sistema.</p>
   </section>
 
   <section class="tarjeta">
     <h2>4 · Por qué da un winrate tan alto (y cuál es el costo)</h2>
     <p>El winrate alto no es magia: sale de la forma del trade. Para ganar alcanza un retroceso chico hasta el promedio; para perder, el precio tiene que irse muy lejos sin retroceder. Lo primero pasa casi siempre; lo segundo, pocas veces. Para tener una referencia, el Nasdaq mueve unos 200 puntos en una sesión promedio.</p>
     <p class="aviso">El costo: el día que el precio se va sin retroceso, perdés la cuenta entera. Por eso lo uso en cuentas de fondeo, donde lo que pierdo es lo que pagué por la cuenta (en una de 50K, unos 90 USD), y no en una cuenta con mi capital.</p>
-    <p>Mis niveles de compensación los calcula mi sistema con 10 años de datos del Nasdaq. Esta calculadora sirve para entender la mecánica y medir el riesgo de cualquier plan antes de entrar.</p>
+    <p>Mis niveles de compensación los calcula mi sistema con 10 años de datos del Nasdaq. Este ejemplo sirve para entender la mecánica: con más contratos, el mismo objetivo en dólares queda a menos puntos.</p>
   </section>
 
   <footer class="pie">
@@ -79,64 +93,58 @@
 </main>
 <script>
 (function () {
-  var $ = function (id) { return document.getElementById(id); };
-  var fmtP = function (n) { return (Math.round(n * 10) / 10).toLocaleString("es-AR", { maximumFractionDigits: 1 }); };
-  var fmtU = function (n) { return Math.round(n).toLocaleString("es-AR"); };
-  var num = function (el) { var v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
-
-  function filaComp(puntos, contratos) {
-    var f = document.createElement("div");
-    f.className = "fila-comp campos";
-    f.innerHTML = '<label>Puntos en contra<input type="number" inputmode="decimal" class="cp" value="' + puntos + '"></label>' +
-      '<label>Contratos<input type="number" inputmode="numeric" class="cc" value="' + contratos + '" min="1"></label>' +
-      '<button type="button" class="quitar" aria-label="Quitar compensación">✕</button>';
-    f.querySelector(".quitar").addEventListener("click", function () { f.remove(); calcular(); });
-    f.querySelectorAll("input").forEach(function (i) { i.addEventListener("input", calcular); });
-    $("comps").appendChild(f);
+  // Velas reales MNQ 1H: [apertura, máximo, mínimo, cierre, tiempo unix UTC]
+  var V = [[30821.75,30869.5,30815,30866,1790820000],[30865.25,30933,30860,30929.25,1790823600],[30929.75,30987.5,30921,30984.5,1790827200],[30984.5,31095.25,30983.5,31094.75,1790830800],[31095,31151.5,31025,31025,1790834400],[31024.25,31043.25,30796.5,30850.25,1790838000],[30852.5,30906.75,30757.75,30843.5,1790841600],[30844,30904,30837,30853.5,1790845200],[30853.25,30949.75,30784.25,30938.75,1790848800],[30938.25,30941.5,30814.75,30881,1790852400],[30881,30889.75,30813.25,30816.5,1790856000],[30817.25,30858,30700.5,30746,1790859600],[30748.5,30754,30560.75,30636,1790863200],[30635.75,30680.5,30529.25,30611.5,1790866800],[30612.5,30673.75,30555.75,30595.25,1790870400],[30595.25,30883.5,30589,30794.75,1790874000],[30794.75,30841.75,30705,30839.75,1790877600],[30840.5,30856.5,30747.75,30772.75,1790881200],[30772.75,30815.75,30762,30771.25,1790884800],[30771.25,30835.75,30760.25,30830.5,1790892000],[30829.75,30854.75,30797.75,30840.25,1790895600],[30839,30920,30810,30844.75,1790899200],[30845,30866,30791.5,30864.5,1790902800],[30864.75,30893.5,30842.75,30889.75,1790906400],[30892,30900,30862.75,30882,1790910000],[30882.75,30920,30882.75,30919.25,1790913600],[30919.25,30935.75,30864.25,30874.5,1790917200],[30874,30902.75,30839.5,30877.5,1790920800],[30876.5,30990,30866.75,30973.25,1790924400],[30974,31029.5,30953,31015.75,1790928000],[31017,31035.5,30984,31005.75,1790931600]];
+  var ENTRADAS = [{ i: 4, p: 31025 }, { i: 5, p: 30850.25 }, { i: 12, p: 30636 }, { i: 16, p: 30839.75 }];
+  var PROM = [31025, 30937.625, 30837.083, 30837.75];
+  var TP6 = 30920.42, TP8 = 30900.25, HIT8 = 21;
+  var NS = "http://www.w3.org/2000/svg";
+  var fmt = function (n) { return Math.round(n).toLocaleString("es-AR"); };
+  var hora = function (t) { var d = new Date((t - 4 * 3600) * 1000); return String(d.getUTCHours()).padStart(2, "0") + ":00"; };
+  function el(tag, at, padre, texto) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in at) e.setAttribute(k, at[k]);
+    if (texto !== undefined) e.textContent = texto;
+    padre.appendChild(e);
+    return e;
   }
-
-  function calcular() {
-    var dd = num($("dd")), v = parseFloat($("contrato").value), c0 = Math.max(1, Math.round(num($("c0"))));
-    var comps = [];
-    document.querySelectorAll("#comps .fila-comp").forEach(function (f) {
-      var p = Math.abs(num(f.querySelector(".cp"))), c = Math.max(0, Math.round(num(f.querySelector(".cc"))));
-      if (c > 0) comps.push({ p: p, c: c });
+  document.querySelectorAll("svg.velas").forEach(function (svg) {
+    var hasta = +svg.dataset.hasta, nEnt = +svg.dataset.entradas, conTP = svg.dataset.tp === "1";
+    var W = 420, H = 330, izq = 6, der = 78, arr = 18, aba = 26, lo = 30500, hi = 31170;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    var ancho = (W - izq - der) / V.length;
+    var x = function (i) { return izq + ancho * (i + 0.5); };
+    var y = function (p) { return arr + (hi - p) / (hi - lo) * (H - arr - aba); };
+    var prom = PROM[nEnt];
+    [30600, 30800, 31000].forEach(function (p) {
+      el("line", { x1: izq, x2: W - der, y1: y(p), y2: y(p), "class": "grilla" }, svg);
+      var tapado = Math.abs(y(p) - y(prom)) < 22 || (conTP && Math.abs(y(p) - y(TP8)) < 22);
+      if (!tapado) el("text", { x: W - der + 6, y: y(p) + 4, "class": "eje" }, svg, fmt(p));
     });
-    comps.sort(function (a, b) { return a.p - b.p; });
-
-    // Posición larga: entrada en 0, "en contra" = puntos por debajo.
-    var contratos = c0, suma = 0, filas = [{ paso: "Entrada", p: 0, c: c0, prom: 0, perd: 0 }], quemaAntes = null;
-    var quemaCon = function (prom, n) { return prom + dd / (v * n); };
-    for (var i = 0; i < comps.length; i++) {
-      var q = quemaCon(suma / contratos, contratos);
-      if (comps[i].p >= q) { quemaAntes = { paso: i + 1, q: q }; break; }
-      suma += comps[i].p * comps[i].c; contratos += comps[i].c;
-      var prom = suma / contratos;
-      filas.push({ paso: "Comp. " + (i + 1), p: comps[i].p, c: contratos, prom: prom, perd: (comps[i].p - prom) * v * contratos });
+    for (var i = 0; i <= hasta; i++) {
+      var c = V[i], sube = c[3] >= c[0];
+      el("line", { x1: x(i), x2: x(i), y1: y(c[1]), y2: y(c[2]), "class": "mecha" }, svg);
+      el("rect", { x: x(i) - ancho * 0.32, width: ancho * 0.64, y: y(Math.max(c[0], c[3])), height: Math.max(1.5, Math.abs(y(c[0]) - y(c[3]))), "class": sube ? "vela-sube" : "vela-baja" }, svg);
+      if (i % 6 === 3) el("text", { x: x(i), y: H - 8, "class": "eje", "text-anchor": "middle" }, svg, hora(c[4]));
     }
-    var ult = filas[filas.length - 1];
-    var quema = quemaCon(ult.prom, ult.c);
-
-    $("r-prom").textContent = "−" + fmtP(ult.prom);
-    $("r-ret").textContent = fmtP(ult.p - ult.prom) + " pts";
-    $("r-quema").textContent = "−" + fmtP(quema);
-    $("tabla").innerHTML = filas.map(function (f) {
-      return "<tr><td>" + f.paso + '</td><td class="n">' + (f.p ? '−' + fmtP(f.p) : '0') + '</td><td class="n">' + f.c + '</td><td class="n">' + (f.prom ? '−' + fmtP(f.prom) : '0') + '</td><td class="n">' + (f.perd > 0 ? "−" + fmtU(f.perd) + " USD" : "0") + "</td></tr>";
-    }).join("");
-
-    var m = $("r-mensaje");
-    if (quemaAntes) m.textContent = "La compensación " + quemaAntes.paso + " no llega a entrar: la cuenta se quema antes, a " + fmtP(quemaAntes.q) + " puntos en contra. Acercala o bajá contratos.";
-    else if (ult.c === c0) m.textContent = "Sin compensaciones necesitás que el precio vuelva hasta tu entrada. Probá agregar una.";
-    else m.textContent = "Desde la última compensación alcanza con un retroceso de " + fmtP(ult.p - ult.prom) + " puntos para salir en cero. Tu margen hasta quemar la cuenta es de " + fmtP(quema - ult.p) + " puntos más.";
-  }
-
-  $("agregar").addEventListener("click", function () {
-    var n = document.querySelectorAll("#comps .fila-comp").length;
-    filaComp(200 + n * 100, 2); calcular();
+    el("line", { x1: x(ENTRADAS[0].i), x2: W - der, y1: y(prom), y2: y(prom), "class": "linea-prom" }, svg);
+    el("rect", { x: W - der + 2, y: y(prom) - 11, width: der - 4, height: 22, rx: 4, "class": "rotulo-prom" }, svg);
+    el("text", { x: W - der / 2, y: y(prom) + 5, "class": "rotulo-prom-t", "text-anchor": "middle" }, svg, fmt(prom));
+    for (var k = 0; k <= nEnt; k++) {
+      var e = ENTRADAS[k];
+      el("path", { d: "M" + x(e.i) + " " + (y(e.p) + 6) + " l-6 11 h12 z", "class": "flecha" }, svg);
+      el("text", { x: x(e.i) - 9, y: y(e.p) + 30, "class": "rotulo-ent", "text-anchor": "end" }, svg, k === 0 ? "2" : "+2");
+    }
+    if (conTP) {
+      el("line", { x1: x(16), x2: W - der, y1: y(TP6), y2: y(TP6), "class": "linea-tp-vieja" }, svg);
+      el("line", { x1: x(16), x2: W - der, y1: y(TP8), y2: y(TP8), "class": "linea-tp" }, svg);
+      el("text", { x: x(HIT8), y: y(TP8) - 26, "class": "sello-tp", "text-anchor": "middle" }, svg, "TAKE PROFIT");
+      el("circle", { cx: x(HIT8), cy: y(TP8), r: 6, "class": "punto-tp" }, svg);
+      el("rect", { x: W - der + 2, y: y(TP8) - 11, width: der - 4, height: 22, rx: 4, "class": "rotulo-tp" }, svg);
+      el("text", { x: W - der / 2, y: y(TP8) + 5, "class": "rotulo-prom-t", "text-anchor": "middle" }, svg, "TP " + fmt(TP8));
+    }
+    el("text", { x: izq + 4, y: arr + 8, "class": "eje" }, svg, "MNQ · 1H");
   });
-  ["dd", "contrato", "c0"].forEach(function (id) { $(id).addEventListener("input", calcular); });
-  filaComp(200, 2);
-  calcular();
 })();
 </script>
 </body>

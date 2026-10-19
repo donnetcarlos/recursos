@@ -78,3 +78,25 @@ table.tabla { width: 100%; border-collapse: collapse; font-size: 15px; }
   .resultado { grid-template-columns: 1fr; }
   .resultado div { flex-direction: row; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--borde); padding-bottom: 8px; }
 }
+.paso-trade { border-top: 1px solid var(--borde); padding-top: 16px; margin-top: 16px; }
+.paso-trade h3 { font-family: "Clash Display", "Switzer", system-ui, sans-serif; font-weight: 600; font-size: 19px; margin: 0 0 10px; line-height: 1.2; }
+.paso-num { font-family: "Commit Mono", ui-monospace, monospace; font-size: 12px; letter-spacing: 0.1em; color: var(--acento); margin: 0 0 4px !important; text-transform: uppercase; }
+svg.velas { width: 100%; height: auto; background: var(--fondo); border-radius: 10px; margin: 2px 0 10px; }
+svg.velas .grilla { stroke: var(--borde); stroke-width: 1; }
+svg.velas .eje { fill: var(--tenue); font-family: "Commit Mono", ui-monospace, monospace; font-size: 14px; }
+svg.velas .verde-t { fill: var(--verde); font-weight: 700; }
+svg.velas .mecha { stroke: var(--texto); stroke-opacity: 0.55; stroke-width: 1.4; }
+svg.velas .vela-sube { fill: var(--texto); }
+svg.velas .vela-baja { fill: var(--fondo); stroke: var(--texto); stroke-opacity: 0.7; stroke-width: 1.4; }
+svg.velas .linea-prom { stroke: var(--acento); stroke-width: 2.5; }
+svg.velas .rotulo-prom { fill: var(--acento); }
+svg.velas .rotulo-prom-t { fill: var(--fondo); font-family: "Commit Mono", ui-monospace, monospace; font-size: 15px; font-weight: 700; }
+svg.velas .flecha { fill: var(--acento); }
+svg.velas .rotulo-ent { fill: var(--acento); font-family: "Commit Mono", ui-monospace, monospace; font-size: 14px; font-weight: 700; }
+svg.velas .linea-tp { stroke: var(--verde); stroke-width: 2; stroke-dasharray: 7 5; }
+svg.velas .linea-tp-vieja { stroke: var(--tenue); stroke-opacity: 0.6; stroke-width: 1.5; stroke-dasharray: 3 5; }
+svg.velas .sello-tp { fill: var(--verde); font-family: "Commit Mono", ui-monospace, monospace; font-size: 15px; font-weight: 700; }
+svg.velas .punto-tp { fill: var(--verde); }
+.comparacion { border-left: 3px solid var(--tenue); padding-left: 12px; margin-top: 18px !important; }
+.fuente { font-size: 12px; color: var(--tenue); }
+svg.velas .rotulo-tp { fill: var(--verde); }
