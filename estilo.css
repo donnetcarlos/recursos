@@ -113,3 +113,5 @@ svg.velas .sello-stop { fill: var(--rojo); font-family: "Commit Mono", ui-monosp
 .paso-trade.clasico .paso-num { color: var(--rojo); }
 .resultado-comp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 12px; }
 .resultado-comp div { background: var(--fondo); border: 1px solid var(--borde); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+.aviso-sistema { border-left: 3px solid var(--acento); background: var(--fondo); border-radius: 8px; padding: 12px 14px; margin-top: 18px; }
+.aviso-sistema p { margin: 0; font-size: 15px; }

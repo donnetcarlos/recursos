@@ -61,16 +61,20 @@
 
     <div class="paso-trade">
       <p class="paso-num">Paso 4 · 12:00</p>
-      <h3>Se da vuelta: paso a positivo y compenso a favor</h3>
-      <svg class="velas" data-hasta="14" data-entradas="3" data-tp="1" role="img" aria-label="Se da vuelta: paso a positivo y compenso a favor"></svg>
-      <p>No hace falta que vuelva a 30.705, donde entré: alcanza con que pase mi promedio de 30.620 (en el máximo de esa vela, <span class="verde">+645 USD</span>). Con el precio arriba del promedio sumo 2 micros a 30.660: con 8 micros, el <span class="acento-t">take profit de +1.000 queda más cerca</span>, en 30.693 en lugar de 30.703.</p>
+      <h3>Se da vuelta y paso a positivo</h3>
+      <svg class="velas" data-hasta="14" data-entradas="2" role="img" aria-label="Se da vuelta y paso a positivo"></svg>
+      <p>No hace falta que vuelva a 30.705, donde entré: alcanza con que pase mi promedio de 30.620 (en el máximo de esa vela, <span class="verde">+645 USD</span>). Todavía no compenso a favor: espero que el precio muestre intención.</p>
     </div>
 
     <div class="paso-trade">
       <p class="paso-num">Paso 5 · 13:00</p>
-      <h3>Take profit: +1.000 USD</h3>
-      <svg class="velas" data-hasta="15" data-entradas="3" data-tp="1" data-hit="1" role="img" aria-label="Take profit: +1.000 USD"></svg>
-      <p>El precio sigue subiendo y toca el take profit. <strong class="verde">+1.000 USD</strong> en el día, con el riesgo definido desde el principio.</p>
+      <h3>Vela alcista con fuerza: compenso a favor y tomo ganancia</h3>
+      <svg class="velas" data-hasta="15" data-entradas="3" data-tp="1" data-hit="1" role="img" aria-label="Vela alcista con fuerza: compensación a favor y take profit"></svg>
+      <p>Aparece una vela alcista con intención: ahí sumo 2 micros a favor, a 30.680. Con 8 micros el promedio queda en 30.635 y el <span class="acento-t">take profit de +1.000 baja a 30.698</span> (con 6 micros estaba en 30.703). El precio sigue subiendo y lo toca en esa misma vela: <strong class="verde">+1.000 USD</strong>.</p>
+    </div>
+
+    <div class="aviso-sistema">
+      <p><strong>Importante:</strong> en mi operativa las compensaciones, en contra y a favor, las hace mi sistema de forma 100 % automática. No son siempre los mismos micros, ni la misma cantidad de compensaciones, ni la misma distancia entre ellas: para cada operación el sistema calcula la gestión con un estudio de 10 años de movimientos del instrumento que se opera y con la volatilidad del momento.</p>
     </div>
 
     <div class="paso-trade clasico">
@@ -91,7 +95,7 @@
     <h2>4 · Por qué da un winrate tan alto (y cuál es el costo)</h2>
     <p>El winrate alto no es magia: sale de la forma del trade. Para ganar alcanza un retroceso chico hasta el promedio; para perder, el precio tiene que irse muy lejos sin retroceder. Lo primero pasa casi siempre; lo segundo, pocas veces. Para tener una referencia, el Nasdaq mueve unos 200 puntos en una sesión promedio.</p>
     <p class="aviso">El costo: el día que el precio se va sin retroceso, perdés la cuenta entera. Por eso lo uso en cuentas de fondeo, donde lo que pierdo es lo que pagué por la cuenta (en una de 50K, unos 90 USD), y no en una cuenta con mi capital.</p>
-    <p>Mis niveles de compensación los calcula mi sistema con 10 años de datos del Nasdaq. Este ejemplo sirve para entender la mecánica: con más contratos, el mismo objetivo en dólares queda a menos puntos.</p>
+    <p>Mis niveles de compensación los calcula mi sistema, de forma automática, con 10 años de datos del instrumento y la volatilidad del momento. Este ejemplo sirve para entender la mecánica: con más contratos, el mismo objetivo en dólares queda a menos puntos.</p>
   </section>
 
   <footer class="pie">
@@ -105,9 +109,9 @@
   // Velas reales MNQ 1H: [apertura, máximo, mínimo, cierre, tiempo unix UTC]
   var V = [[30821.75,30869.5,30815,30866,1790820000],[30865.25,30933,30860,30929.25,1790823600],[30929.75,30987.5,30921,30984.5,1790827200],[30984.5,31095.25,30983.5,31094.75,1790830800],[31095,31151.5,31025,31025,1790834400],[31024.25,31043.25,30796.5,30850.25,1790838000],[30852.5,30906.75,30757.75,30843.5,1790841600],[30844,30904,30837,30853.5,1790845200],[30853.25,30949.75,30784.25,30938.75,1790848800],[30938.25,30941.5,30814.75,30881,1790852400],[30881,30889.75,30813.25,30816.5,1790856000],[30817.25,30858,30700.5,30746,1790859600],[30748.5,30754,30560.75,30636,1790863200],[30635.75,30680.5,30529.25,30611.5,1790866800],[30612.5,30673.75,30555.75,30595.25,1790870400],[30595.25,30883.5,30589,30794.75,1790874000],[30794.75,30841.75,30705,30839.75,1790877600],[30840.5,30856.5,30747.75,30772.75,1790881200],[30772.75,30815.75,30762,30771.25,1790884800],[30771.25,30835.75,30760.25,30830.5,1790892000],[30829.75,30854.75,30797.75,30840.25,1790895600],[30839,30920,30810,30844.75,1790899200],[30845,30866,30791.5,30864.5,1790902800],[30864.75,30893.5,30842.75,30889.75,1790906400],[30892,30900,30862.75,30882,1790910000],[30882.75,30920,30882.75,30919.25,1790913600],[30919.25,30935.75,30864.25,30874.5,1790917200],[30874,30902.75,30839.5,30877.5,1790920800],[30876.5,30990,30866.75,30973.25,1790924400],[30974,31029.5,30953,31015.75,1790928000],[31017,31035.5,30984,31005.75,1790931600]];
   var DESDE = 6;
-  var ENTRADAS = [{ i: 11, p: 30705 }, { i: 12, p: 30610 }, { i: 13, p: 30545 }, { i: 14, p: 30660 }];
-  var PROM = [30705, 30657.5, 30620, 30630];
-  var TP = 30692.5, TP_VIEJO = 30703.33, HIT = 15;
+  var ENTRADAS = [{ i: 11, p: 30705 }, { i: 12, p: 30610 }, { i: 13, p: 30545 }, { i: 15, p: 30680 }];
+  var PROM = [30705, 30657.5, 30620, 30635];
+  var TP = 30697.5, TP_VIEJO = 30703.33, HIT = 15;
   var C = { entrada: 30705, stop: 30580, tp: 30955, hitStop: 12 };
   var NS = "http://www.w3.org/2000/svg";
   var fmt = function (n) { return Math.round(n).toLocaleString("es-AR"); };
@@ -167,8 +171,8 @@
       el("text", { x: x(e.i) - 9, y: y(e.p) + 30, "class": "rotulo-ent", "text-anchor": "end" }, svg, k === 0 ? "2" : "+2");
     }
     if (d.tp === "1") {
-      el("line", { x1: x(14), x2: W - der, y1: y(TP_VIEJO), y2: y(TP_VIEJO), "class": "linea-tp-vieja" }, svg);
-      el("line", { x1: x(14), x2: W - der, y1: y(TP), y2: y(TP), "class": "linea-tp" }, svg);
+      el("line", { x1: x(15), x2: W - der, y1: y(TP_VIEJO), y2: y(TP_VIEJO), "class": "linea-tp-vieja" }, svg);
+      el("line", { x1: x(15), x2: W - der, y1: y(TP), y2: y(TP), "class": "linea-tp" }, svg);
       rotulo(svg, W, der, y(TP) - 24, "TP " + fmt(TP), "rotulo-tp");
     }
     if (d.hit === "1") {
