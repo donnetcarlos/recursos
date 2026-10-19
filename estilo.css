@@ -100,3 +100,16 @@ svg.velas .punto-tp { fill: var(--verde); }
 .comparacion { border-left: 3px solid var(--tenue); padding-left: 12px; margin-top: 18px !important; }
 .fuente { font-size: 12px; color: var(--tenue); }
 svg.velas .rotulo-tp { fill: var(--verde); }
+svg.velas .linea-ent { stroke: var(--texto); stroke-opacity: 0.8; stroke-width: 2; }
+svg.velas .linea-stop { stroke: var(--rojo); stroke-width: 2; }
+svg.velas .zona-perdida { fill: var(--rojo); fill-opacity: 0.12; }
+svg.velas .zona-ganancia { fill: var(--verde); fill-opacity: 0.08; }
+svg.velas .rotulo-ent-box { fill: var(--texto); }
+svg.velas .rotulo-stop { fill: var(--rojo); }
+svg.velas .rotulo-tp-gris { fill: var(--tenue); }
+svg.velas .punto-stop { fill: var(--rojo); }
+svg.velas .sello-stop { fill: var(--rojo); font-family: "Commit Mono", ui-monospace, monospace; font-size: 15px; font-weight: 700; }
+.paso-trade.clasico { border-top: 2px solid var(--rojo); margin-top: 26px; }
+.paso-trade.clasico .paso-num { color: var(--rojo); }
+.resultado-comp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 12px; }
+.resultado-comp div { background: var(--fondo); border: 1px solid var(--borde); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
