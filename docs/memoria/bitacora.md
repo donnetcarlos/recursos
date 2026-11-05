@@ -11,3 +11,7 @@
 ## 2026-10-30
 - Ayer/hoy se subieron y quitaron dos videos temporales más (`p/2026-10-29_r11-compensadas-v1/v2-*.mp4`, ~3,5 MB c/u) usados como portadas temporales para publicar los reels r11. Árbol limpio; quedan en el historial. Estos commits ya estaban en origin/main.
 - Repo público a propósito (GitHub Pages). `gh` sin autenticar: no se pudo verificar visibilidad ni se hizo push de esta nota. Decide Carlos.
+
+## 2026-11-04
+- Se subio y quito un video temporal (`p/2026-11-04_b03-video-mw2tuny5.mp4`, ~14 MB) usado como portada temporal para publicar el reel b03 (commits 77f9d70 y 76d88fe, ya en origin/main). Queda en el historial.
+- Repo publico a proposito (GitHub Pages); `gh` sin autenticar, no se pudo verificar visibilidad. Esta nota queda commiteada local, sin push. Decide Carlos.
