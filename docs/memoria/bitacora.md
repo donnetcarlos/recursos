@@ -15,3 +15,7 @@
 ## 2026-11-04
 - Se subio y quito un video temporal (`p/2026-11-04_b03-video-mw2tuny5.mp4`, ~14 MB) usado como portada temporal para publicar el reel b03 (commits 77f9d70 y 76d88fe, ya en origin/main). Queda en el historial.
 - Repo publico a proposito (GitHub Pages); `gh` sin autenticar, no se pudo verificar visibilidad. Esta nota queda commiteada local, sin push. Decide Carlos.
+
+## 2026-11-05
+- Se subio y quito otro video temporal (`p/2026-11-04_b03-video-mw3pgsga.mp4`, ~14 MB) usado como portada temporal para el reel b03 (commits 2df1fd0 y ac44205, ya en origin/main). Queda en el historial. Sin otros cambios; arbol limpio.
+- Repo publico a proposito (GitHub Pages); `gh` sin autenticar, no se pudo verificar visibilidad. Nota commiteada local, sin push. Decide Carlos.
