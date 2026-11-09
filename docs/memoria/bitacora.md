@@ -19,3 +19,4 @@
 ## 2026-11-05
 - Se subio y quito otro video temporal (`p/2026-11-04_b03-video-mw3pgsga.mp4`, ~14 MB) usado como portada temporal para el reel b03 (commits 2df1fd0 y ac44205, ya en origin/main). Queda en el historial. Sin otros cambios; arbol limpio.
 - Repo publico a proposito (GitHub Pages); `gh` sin autenticar, no se pudo verificar visibilidad. Nota commiteada local, sin push. Decide Carlos.
+- 2026-11-08: Carlos autorizó sacar del sitio público el video sobrante p/2026-10-29_r11-compensadas-v3 (portada temporal de r11, ya publicado como reel). Quitado del árbol; queda en el historial de git (no se reescribió el historial).
