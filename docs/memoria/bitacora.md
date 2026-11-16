@@ -24,3 +24,6 @@
 ## 2026-11-13
 - Se subio y quito un video temporal (`p/2026-11-08_g02-v1-mwflg1y1.mp4`, ~5 MB) usado como portada temporal para publicar el reel g02 (commits 4691842 y 66f59d7, ya en origin/main). Queda en el historial. Arbol limpio, sin otros cambios.
 - Repo publico a proposito (GitHub Pages); `gh` sin autenticar, no se pudo verificar visibilidad. Nota commiteada local, sin push. Decide Carlos.
+
+## 2026-11-15
+- Se subió y se quitó un video temporal (p/2026-11-08_g02-v2, ~5 MB) usado como soporte para publicar un reel; el sitio quedó sin cambios netos.
