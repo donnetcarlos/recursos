@@ -27,3 +27,6 @@
 
 ## 2026-11-15
 - Se subió y se quitó un video temporal (p/2026-11-08_g02-v2, ~5 MB) usado como soporte para publicar un reel; el sitio quedó sin cambios netos.
+
+## 2026-11-17
+- Se subió temporalmente un video de portada (p/2026-11-08_g02-v3, 5 MB) para poder publicar un reel por la API de Meta y se quitó enseguida (commits eb0596b y 856582d). Sin cambios netos en el sitio.
