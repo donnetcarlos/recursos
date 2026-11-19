@@ -30,3 +30,6 @@
 
 ## 2026-11-17
 - Se subió temporalmente un video de portada (p/2026-11-08_g02-v3, 5 MB) para poder publicar un reel por la API de Meta y se quitó enseguida (commits eb0596b y 856582d). Sin cambios netos en el sitio.
+
+## 2026-11-18
+- Se subieron y quitaron tres videos temporales de portada (p/2026-11-10_g06-t01, t04, t09, ~2 MB c/u) para publicar reels por la API de Meta. Sin cambios netos en el sitio; quedan en el historial.
