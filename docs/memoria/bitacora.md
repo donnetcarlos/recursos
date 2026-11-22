@@ -36,3 +36,7 @@
 
 ## 2026-11-20
 - Se subieron y quitaron videos temporales de portada (p/2026-11-10_g06-t06 y t10, ~2 MB c/u) para publicar reels por la API de Meta (commits f4bb774, 296ed73, fa8732d, e581af6). Sin cambios netos en el sitio; quedan en el historial.
+
+## 2026-11-21 — Cierre del día
+- Se subieron y se quitaron del repo videos temporales de portada (`p/2026-11-10_g06-t07-…mp4` y `g06-t08-…mp4`) para que Instagram los pudiera leer al publicar. Quedaron borrados (neto: sin cambios en el sitio).
+- Estado: árbol limpio, main al día con origin.
